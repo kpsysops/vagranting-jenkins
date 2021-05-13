@@ -10,15 +10,14 @@ Vagrant.configure("2") do |config|
         jenkins.vm.provision "shell", inline: <<-SHELL
             
             #Jenkins Setup
-            sudo wget -O /etc/yum.repos.d/jenkins.repo \
-            https://pkg.jenkins.io/redhat-stable/jenkins.repo
+            sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
             sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
-            sudo yum upgrade
-            sudo yum install jenkins java-11-openjdk-devel
+            # sudo yum upgrade -y
+            sudo yum install jenkins java-11-openjdk-devel -y
             sudo systemctl daemon-reload
             sudo systemctl --now enable jenkins
 
-            sudo firewall-cmd --zone=public --add-service=http --add-port=8080/tcp --permanent
+            sudo firewall-cmd --zone=public --add-port=8080/tcp --permanent
             sudo firewall-cmd --reload
 
             # Setup DNS client with vagranting-dns
