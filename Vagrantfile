@@ -16,6 +16,10 @@ Vagrant.configure("2") do |config|
             sudo yum upgrade
             sudo yum install jenkins java-11-openjdk-devel
             sudo systemctl daemon-reload
+            sudo systemctl --now enable jenkins
+
+            sudo firewall-cmd --zone=public --add-service=http --add-port=8080/tcp --permanent
+            sudo firewall-cmd --reload
 
             # Setup DNS client with vagranting-dns
             ETH0=$(sudo nmcli connection show | grep eth0 | cut -d ' ' -f 4)
