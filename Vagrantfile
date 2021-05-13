@@ -11,6 +11,12 @@ Vagrant.configure("2") do |config|
         jenkins.vm.provision "shell", inline: <<-SHELL
             
             #Jenkins Setup
+            sudo wget -O /etc/yum.repos.d/jenkins.repo \
+            https://pkg.jenkins.io/redhat-stable/jenkins.repo
+            sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+            sudo yum upgrade
+            sudo yum install jenkins java-11-openjdk-devel
+            sudo systemctl daemon-reload
 
             # Setup DNS client with vagranting-dns
             ETH0=$(sudo nmcli connection show | grep eth0 | cut -d ' ' -f 4)
