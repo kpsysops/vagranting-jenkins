@@ -5,7 +5,6 @@ Vagrant.configure("2") do |config|
     config.vm.define "jenkins" do |jenkins|
         jenkins.vm.hostname = "jenkins.example.com"
         jenkins.vm.box = "generic/centos7"
-        jenkins.vm.network "forwarded_port", guest: 80, host:8080, host_ip: "127.0.0.1"
         jenkins.vm.network "private_network", ip: "10.10.10.13"
         jenkins.vm.synced_folder ".", "/vagrant", type: "rsync"
         jenkins.vm.provision "shell", inline: <<-SHELL
