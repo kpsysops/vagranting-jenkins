@@ -12,10 +12,6 @@ Vagrant.configure("2") do |config|
             
             #Jenkins Setup
 
-
-
-
-
             # Setup DNS client with vagranting-dns
             ETH0=$(sudo nmcli connection show | grep eth0 | cut -d ' ' -f 4)
             ETH1=$(sudo nmcli connection show | grep eth1 | cut -d ' ' -f 4)
