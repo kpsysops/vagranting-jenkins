@@ -10,7 +10,8 @@ Vagrant.configure("2") do |config|
         jenkins.vm.provision "shell", inline: <<-SHELL
             
             #Jenkins Setup
-            sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+            sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo 
+            if $? == '0'; then continue; else $(sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo --no-check-certificate) ; fi
             sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
             # sudo yum upgrade -y
             sudo yum install jenkins java-11-openjdk-devel -y
