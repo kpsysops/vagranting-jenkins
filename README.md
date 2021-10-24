@@ -26,4 +26,12 @@ vagrant up
 
 4. Enjoy! 
 
+## Notes
+
+if you want to use java 8 (java-1-8-0) please do the following:
+```
+ sudo yum install java-1.8.0-openjdk.x86_64
+ sudo sudo update-alternatives --config java
+ sudo java -version
+```
 
